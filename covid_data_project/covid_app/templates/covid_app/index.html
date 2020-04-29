@@ -1,0 +1,71 @@
+{% extends 'covid_app/base.html' %}
+
+{% block title %}
+Covid19 News
+{% endblock  %}
+
+
+{% block content %}
+
+<div class="row mt-4">
+
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header text-center">
+                <strong>Coronavirus (COVID-19)</strong>
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p><mark>Worldwide</mark></p>
+                <div class="row row-cols-3">
+                   
+                    <div class="col border-right">
+                        <small>Confirmed</small>
+                        <p class="h3">{{ data.Global.TotalConfirmed }}</p>
+
+                    </div>
+                    <div class="col border-right">
+                        <small>Recovered</small>
+                        <p class="h3">{{ data.Global.TotalRecovered }}</p>
+                    </div>
+                    <div class="col">
+                        <small>Deaths</small>
+                        <p class="h3">{{ data.Global.TotalDeaths }}</p>
+
+                    </div>
+                   
+                  </div>
+                <footer class="blockquote-footer">Data collected from <cite title="Source Title">https://api.covid19api.com/summary</cite></footer>
+              </blockquote>
+            </div>
+          </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Country</th>
+              <th scope="col">Total Confirmed</th>
+              <th scope="col">Total Recovered</th>
+              <th scope="col">Total Deaths</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for detail in data.Countries %}
+            <tr>
+              <th scope="row">{{ detail.Country }}</th>
+              <td>{{ detail.TotalConfirmed }}</td>
+              <td>{{ detail.TotalRecovered }}</td>
+              <td>{{ detail.TotalDeaths }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+
+{% endblock  %}
+
